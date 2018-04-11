@@ -19,7 +19,7 @@ const mapChildren = (children, transform) => {
           c.props.children = mapChildren(c.props.children, transform);
           return c;
         }
-        return transform(c);
+        return transform(c, i);
     });
   }
   return children;
