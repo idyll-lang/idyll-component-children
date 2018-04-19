@@ -14,7 +14,7 @@ const filterChildren = (children, f) => {
 
 const mapChildren = (children, transform) => {
   if (children) {
-    return children.map((c) => {
+    return children.map((c, i) => {
         if (c && c.type.name && c.type.name.toLowerCase() === 'wrapper') {
           c.props.children = mapChildren(c.props.children, transform);
           return c;
