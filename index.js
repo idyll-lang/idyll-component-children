@@ -1,8 +1,9 @@
 
+const React = require('react');
 
 const filterChildren = (children, f) => {
   if (children) {
-    return children.filter((c) => {
+    return React.Children.toArray(children).filter((c) => {
         if (c && c.type.name && c.type.name.toLowerCase() === 'wrapper') {
           return f(c.props.children[0]);
         }
@@ -14,10 +15,11 @@ const filterChildren = (children, f) => {
 
 const mapChildren = (children, transform) => {
   if (children) {
-    return children.map((c, i) => {
+    return React.Children.map(children, (c, i) => {
         if (c && c.type.name && c.type.name.toLowerCase() === 'wrapper') {
-          c.props.children = mapChildren(c.props.children, transform);
-          return c;
+          return React.cloneElement(c, {
+            children: mapChildren(c.props.children, transform)
+          });
         }
         return transform(c, i);
     });
