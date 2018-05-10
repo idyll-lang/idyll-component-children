@@ -2,14 +2,26 @@
   "name": "idyll-component-children",
   "version": "1.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rimraf dist",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src -d dist/cjs",
+    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es",
+    "build": "npm run build:cjs && npm run build:es",
+    "dev": "yarn run build:es --watch",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.5",
+    "rimraf": "^2.6.2"
+  }
 }
