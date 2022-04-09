@@ -1,6 +1,6 @@
 {
   "name": "idyll-component-children",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
